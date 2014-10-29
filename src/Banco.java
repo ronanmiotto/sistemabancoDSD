@@ -13,7 +13,7 @@ public class Banco {
 		// Cadastrando contas no banco
 		addContaCliente(new Conta("Dilma Rousseff", "1010", "123", 500));
 		addContaCliente(new Conta("Aécio Neves", "1020", "123", 300));
-		addContaCliente(new Conta("Eduardo Jorge", "1040", "123", 100));
+		addContaCliente(new Conta("Marina Silva", "1040", "123", 100));
 
 	}
 	
