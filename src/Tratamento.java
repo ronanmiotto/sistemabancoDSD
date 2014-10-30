@@ -124,6 +124,7 @@ public class Tratamento extends Thread {
 	
 	//Método realizar Depósito em conta
 	private String realizarDeposito(String num, double valor, Banco banco) {
+		
 		if (num == "") {
 			return "false-Erro!\n O Campo conta não foi preenchido";
 		}
@@ -137,6 +138,7 @@ public class Tratamento extends Thread {
 		}
 
 		for (int i = 0; i < banco.getContas().size(); i++) {
+			
 			Conta conta = banco.getContas().get(i);
 
 			if (conta.getNumeroConta().equalsIgnoreCase(num)) {
@@ -168,12 +170,16 @@ public class Tratamento extends Thread {
 
 		if (valor > 0) {
 			for (int i = 0; i < banco.getContas().size(); i++) {
+				
 				Conta conta = banco.getContas().get(i);
 
 				if (conta.getNumeroConta() == (numeroConta)) {
 					if (conta.getSaldo() < valor) {
+						
 						return "false-Saldo insuficiente!";
+						
 					} else {
+						
 						conta.setSaldo(conta.getSaldo() - valor);
 						conta.setExtrato(conta.getExtrato() + "Valor do Saque: " + valor);
 						banco.getContas().set(i, conta);

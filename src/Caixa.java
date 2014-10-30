@@ -9,7 +9,7 @@ public class Caixa {
 			IOException {
 
 		Socket caixa = new Socket("127.0.0.1", 12345);
-		System.out.println("O caixa se conectou ao servidor!\n");
+		System.out.println("O caixa conectou-se ao servidor!\n");
 
 		// login
 		Scanner ler = new Scanner(System.in);
@@ -21,14 +21,14 @@ public class Caixa {
 			System.out.println("Seja Bem Vindo(a) ao BANCO DO POVO.\nPor favor, insira os dados de sua conta.\n");
 
 			System.out.print("Número da Conta: ");
-			String conta = ler.nextLine();
+			String numeroConta = ler.nextLine();
 
 			System.out.print("Senha: ");
 			String senha = ler.nextLine();
 
 			// Enviando a conta e a senha para o tratamento
 			PrintStream enviaSocket = new PrintStream(caixa.getOutputStream());
-			enviaSocket.println(conta + "-" + senha);
+			enviaSocket.println(numeroConta + "-" + senha);
 
 			// Recebendo as informações da conta
 			Scanner recebeSocket = new Scanner(caixa.getInputStream());
@@ -37,10 +37,10 @@ public class Caixa {
 			// Conferindo se cliente existe
 			if (validandoCliente[0] == ("true")) {
 				System.out.println("\nOlá Senhor(a), " + validandoCliente[1] + ".");
-
+				
 				int opc = 0;
 
-				while (opc != 6) {
+				while (opc >= 1 || opc <= 6) {
 					
 
 					// Menu de opções
