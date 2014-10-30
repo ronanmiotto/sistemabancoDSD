@@ -18,7 +18,8 @@ public class Caixa {
 
 		while (funcionando == true) {
 
-			System.out.println("Seja Bem Vindo(a) ao BANCO DO POVO.\nPor favor, insira os dados de sua conta.\n");
+			System.out
+					.println("Seja Bem Vindo(a) ao BANCO DO POVO.\nPor favor, insira os dados de sua conta.\n");
 
 			System.out.print("Número da Conta: ");
 			String numeroConta = ler.nextLine();
@@ -37,11 +38,10 @@ public class Caixa {
 			// Conferindo se cliente existe
 			if (validandoCliente[0].equals("true")) {
 				System.out.println("\nOlá Senhor(a), " + validandoCliente[1] + ".");
-				
+
 				int opc = 0;
 
 				while (opc >= 1 || opc <= 6) {
-					
 
 					// Menu de opções
 					System.out.println("\n****** BANCO DO POVO ******");
@@ -53,8 +53,8 @@ public class Caixa {
 					System.out.println("6 - Sair");
 
 					System.out.print("\nDigite a opção que deseja realizar: ");
-					
-					////Transforma entrada do teclado em número
+
+					// //Transforma entrada do teclado em número
 					opc = Integer.parseInt(ler.nextLine());
 
 					if (opc == 1) {
@@ -65,129 +65,121 @@ public class Caixa {
 
 						System.out.print("Valor do depósito: ");
 						
-						//Transforma entrada do teclado em números
+						// Transforma entrada do teclado em números
 						double valorDeposito = Double.parseDouble(ler.nextLine());
+						System.out.println("\n____________________________________\n");
 
 						// Enviando dados do depósito (Número da conta e valor do depósito)
 						enviaSocket.println(opc + "-" + numContaDeposito + "-" + valorDeposito);
-						
-						//Recebendo os dados quebrados e transformando em string
+
+						// Recebendo os dados quebrados e transformando em string
 						String dadosDeposito[] = recebeSocket.nextLine().split("-");
 
-						if (dadosDeposito[0] == ("true")) {
-							
-							//Apresenta nome do cliente e valor do depositado
-							System.out.println("\nOperação realizada com sucesso!!!");
-							System.out.println("Cliente: " + dadosDeposito[2]);
-							System.out.println("Valor Depositado: " + dadosDeposito[1]);
-
-						} else {
-							
-							//Apresenta valor do depósito
-							System.out.println("\n" + dadosDeposito[1]);
-						}
-
+					} else {
 						if (opc == 2) {
-							
-							int i;
+
 							System.out.println("\n__________SAQUE__________");
 							System.out.print("Digite o número da conta: ");
 							String contaSaque = ler.nextLine();
 
 							System.out.print("Digite o valor do saque: ");
-							
-							//Transforma entrada do teclado em números
+
+							// Transforma entrada do teclado em números
 							double valorSaque = Double.parseDouble(ler.nextLine());
 
-							//Enviando socket para tratamento
+							// Enviando socket para tratamento
 							enviaSocket.println(opc + "-" + contaSaque + "-" + valorSaque);
-							
-							//Recebendo os dados quebrados e transformando em string
+
+							// Recebendo os dados quebrados e transformando em
+							// string
 							String dadosSaque[] = recebeSocket.nextLine().split("-");
+							System.out.println("\n____________________________________\n");
 
-							if (dadosSaque[0] == ("true")) {
-								
-								//Apresenta nome do cliente e valor do saldo
-								System.out.println("\nOperação realizada com sucesso!!!");
-								System.out.println("Cliente: " + dadosSaque[2]);
-								System.out.println("Saldo: " + dadosSaque[1]);
-								
-								double totalSaque = Double.parseDouble(dadosSaque[2]);
+							if (dadosSaque[0].equals("true")) {
+
+								// Apresenta nome do cliente e valor do saldo
+								System.out.println("\nOperação realizada com sucesso!!!" + "Cliente: "+ dadosSaque[2] + "Saldo: " + dadosSaque[1]);
+								System.out.println("\n____________________________________\n");
+
+								//double totalSaque = Double.parseDouble(dadosSaque[1]);
 
 							} else {
-								
+
 								System.out.println("\n" + dadosSaque[1]);
-								double totalSaque = Double.parseDouble(dadosSaque[2]);
+								//double totalSaque = Double.parseDouble(dadosSaque[1]);
 							}
-
-						}
-
-						if (opc == 3) {
-							
-							System.out.println("\n__________SALDO__________");
-						
-							//Enviando socket para tratamento
-							enviaSocket.println(opc + "-" + validandoCliente[2]);
-							
-							//Recebendo os dados quebrados e transformando em string
-							String dadosSaldo[] = recebeSocket.nextLine().split("-");
-
-							if (dadosSaldo[0] == ("true")) {
-
-								System.out.println("Saldo: " + dadosSaldo[1]);
-								double totalSaldo = Double.parseDouble(dadosSaldo[1]);
-								
-							} else {
-								
-								System.out.println("\n" + dadosSaldo[1]);
-								double totalSaldo = Double.parseDouble(dadosSaldo[1]);
-							}
-
-						}
-
-						if (opc == 4) {
-							
-							System.out.println("\n__________EXTRATO__________");
-							
-							//Enviando socket para tratamento
-							enviaSocket.println(opc + "-" + validandoCliente[2]);
-							
-							//Recebendo os dados quebrados e transformando em string
-							String dadosExtrato[] = recebeSocket.nextLine().split("-");
-
-							if (dadosExtrato[0] == ("true")) {
-
-								for (int i = 1; i < dadosExtrato.length; i++) {
-									
-									//System.out.println(dadosExtrato[i] += "\nDepósito: R$ " +   dadosDeposito[i] + "\nSaque: R$ " + totalSaque + "\nSaldo: R$ "  + totalSaldo);
-									System.out.println("...\n...\n...\n...\n...\n");
-								}
-								
-							} else {
-								
-								System.out.println("\n" + dadosExtrato[1]);
-								System.out.println("...\n...\n...\n...\n...\n");
-							}
-
-						}
-
-						if (opc == 5) {
-
-							System.out.println("\n__________AJUDA__________");
-							
 						} else {
+							if (opc == 3) {
 
-							System.out.println("\nConta desconectada\n\n");
-							enviaSocket.println(opc);
+								System.out.println("\n__________SALDO__________");
+
+								// Enviando socket para tratamento
+								enviaSocket.println(opc + "-" + validandoCliente[2]);
+
+								// Recebendo os dados quebrados e transformando em string
+								String dadosSaldo[] = recebeSocket.nextLine().split("-");
+
+								if (dadosSaldo[0].equals("true")) {
+									
+									System.out.println("Saldo: "+ dadosSaldo[1]);
+									//double totalSaldo = Double.parseDouble(dadosSaldo[1]);
+									System.out.println("\n____________________________________\n");
+
+								} else {
+
+									System.out.println("\n" + dadosSaldo[1]);
+									//double totalSaldo = Double.parseDouble(dadosSaldo[1]);
+								}
+
+							} else {
+								if (opc == 4) {
+
+									System.out.println("\n__________EXTRATO__________");
+
+									// Enviando socket para tratamento
+									enviaSocket.println(opc + "-" + validandoCliente[2]);
+
+									// Recebendo os dados quebrados e
+									// transformando em string
+									String dadosExtrato[] = recebeSocket.nextLine().split("-");
+
+									if (dadosExtrato[0].equals("true")) {
+
+										for (int i = 1; i < dadosExtrato.length; i++) {
+
+											//System.out.println(dadosExtrato[i] += "\nDepósito: R$ " +dadosDeposito[i] + "\nSaque: R$ " + totalSaque + "\nSaldo: R$ " +totalSaldo);
+											System.out.println("...\n...\n...\n...\n...\n");
+										}
+
+									} else {
+
+										System.out.println("\n" + dadosExtrato[1]);
+										System.out.println("...\n...\n...\n...\n...\n");
+									}
+
+								} else {
+
+									if (opc == 5) {
+
+										System.out.println("\n__________AJUDA__________");
+
+									} else {
+
+										if (opc == 6) {
+
+											System.out.println("\nConta desconectada\n\n");
+											enviaSocket.println(opc);
+
+										}
+									}
+								}
+							}
 						}
-
 					}
 				}
-			}else{
-				
-				System.out.println("\n***Conta ou Senha inválida***\nTente Novamente!\n");
+
+				// System.out.println("\n***Conta ou Senha inválida***\nTente Novamente!\n");
 			}
 		}
-
 	}
 }

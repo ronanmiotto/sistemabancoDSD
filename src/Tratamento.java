@@ -20,8 +20,7 @@ public class Tratamento extends Thread {
 
 	// Conectando com os caixas
 	public void run() {
-		System.out.println(this.name + ": "
-				+ caixa.getInetAddress().getHostAddress() + " conectou-se.");
+		System.out.println(this.name + ": " + caixa.getInetAddress().getHostAddress() + " conectou-se.");
 
 		while (true) {
 
@@ -56,7 +55,7 @@ public class Tratamento extends Thread {
 
 					int opc = Integer.parseInt(dadosRecebidos[0]);
 
-					while (opc != 6) {
+					while (opc >= 1 || opc <= 6) {
 						
 						if (opc == 1) {
 						// Enviando dados do depósito
@@ -107,13 +106,13 @@ public class Tratamento extends Thread {
 	}
 
 	//Método de autenticação de Login
-	private String autenticaLogin(String texto, Banco banco) {
+	private String autenticaLogin(String textoEntrada, Banco banco) {
 		
-		String[] info = texto.split("-");
+		String[] info = textoEntrada.split("-");
 
 		for (Conta conta : banco.getContas()) {
 			
-			if (conta.getNumeroConta() == (info[0]) && conta.getSenha() == (info[1])) {
+			if (conta.getNumeroConta().equals(info[0]) && conta.getSenha().equals(info[1])) {
 				
 				return "true-" + conta.getNomeCliente() + "-" + conta.getNumeroConta();
 			}
@@ -125,55 +124,60 @@ public class Tratamento extends Thread {
 	//Método realizar Depósito em conta
 	private String realizarDeposito(String num, double valor, Banco banco) {
 		
-		if (num == "") {
-			return "false-Erro!\n O Campo conta não foi preenchido";
+		if (num.equals("")) {
+			return "false-O Campo conta não foi preenchido";
 		}
 
 		if (valor == 0) {
-			return "false-Erro!\n O Campo valor não foi preenchido";
+			return "false-O Campo valor não foi preenchido";
 		}
 
 		if (valor < 0) {
-			return "false-Erro!\nValor negativo";
+			return "false-Valor Negativo";
 		}
 
 		for (int i = 0; i < banco.getContas().size(); i++) {
 			
 			Conta conta = banco.getContas().get(i);
 
-			if (conta.getNumeroConta().equalsIgnoreCase(num)) {
+			if (conta.getNumeroConta().equals(num)) {
 				conta.setSaldo(conta.getSaldo() + valor);
 				conta.setExtrato(conta.getExtrato() + "Valor do Depósito: " + valor);
 				banco.getContas().set(i, conta);
 
-				return "true-" + valor + "-" + conta.getNomeCliente();
+				return "true-Operação efetuada com sucesso!" + valor + "-" + conta.getNomeCliente();
 			}
 		}
 
-		return "false-Erro!\nDepósito não efetuado!";
+		return "false-Depósito não efetuado!";
 	}
 
 	//Método  realizar Saque em conta
 	private String realizarSaque(String numeroConta, double valor, Banco banco) {
 
-		if (numeroConta == "") {
-			return "false-Erro!\n O Campo conta não foi preenchido";
+		if (numeroConta.equals("")) {
+			return "false-O Campo conta não foi preenchido";
 		}
 
 		if (valor == 0) {
-			return "false-Erro!\n O Campo valor não foi preenchido";
+			return "false-O Campo valor não foi preenchido";
 		}
 
 		if (valor < 0) {
-			return "false-Erro!\n Valor negativo";
+			return "false-Valor negativo";
 		}
 
 		if (valor > 0) {
 			for (int i = 0; i < banco.getContas().size(); i++) {
 				
 				Conta conta = banco.getContas().get(i);
+				
+				if (valor > conta.getSaldo()){
+					
+					return"false-Saldo insuficiente";
+				}
 
-				if (conta.getNumeroConta() == (numeroConta)) {
+				if (conta.getNumeroConta().equals(numeroConta)) {
 					if (conta.getSaldo() < valor) {
 						
 						return "false-Saldo insuficiente!";
@@ -184,7 +188,7 @@ public class Tratamento extends Thread {
 						conta.setExtrato(conta.getExtrato() + "Valor do Saque: " + valor);
 						banco.getContas().set(i, conta);
 
-						return "true-" + conta.getSaldo() + "-" + conta.getNomeCliente();
+						return "true-Operação efetuada com sucesso!" + conta.getSaldo() + "-" + conta.getNomeCliente();
 					}
 				}
 			}
@@ -194,18 +198,18 @@ public class Tratamento extends Thread {
 	}
 
 	//Método consultar saldo da conta
-	private String consultarSaldo(String numero, Banco banco) {
+	private String consultarSaldo(String num, Banco banco) {
 		
-		if (numero == "") {
+		if (num.equals("")) {
 			
-			return "false-Erro!\nO Campo conta não foi preenchido";
+			return "false-O Campo conta não foi preenchido";
 		}
 
 		for (int i = 0; i < banco.getContas().size(); i++) {
 			
 			Conta conta = banco.getContas().get(i);
 
-			if (conta.getNumeroConta() == numero) {
+			if (conta.getNumeroConta().equals(num)) {
 				
 				return "true-" + conta.getSaldo();
 			}
@@ -215,20 +219,20 @@ public class Tratamento extends Thread {
 	}
 
 	//Método exibir extrato da conta
-	private String exibeExtrato(String numero, Banco banco) {
+	private String exibeExtrato(String num, Banco banco) {
 		
-		if (numero == "") {
+		if (num.equals("")) {
 			
-			return "false-Erro!\n O Campo conta não foi preenchido";
+			return "false-O Campo conta não foi preenchido";
 		}
 
 		for (int i = 0; i < banco.getContas().size(); i++) {
 			
 			Conta conta = banco.getContas().get(i);
 
-			if (conta.getNumeroConta() == numero) {
+			if (conta.getNumeroConta().equals(num)) {
 				
-				return "true" + conta.getExtrato();
+				return "true-Operação efetuada com sucesso!" + conta.getExtrato();
 			}
 		}
 

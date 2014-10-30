@@ -3,8 +3,8 @@ public class Conta {
 	
 	//Atributos
 	private String nomeCliente;
-	private String senha;
 	private String numeroConta;
+	private String senha;
 	private double saldo;
 	private String extrato;
 	
@@ -12,8 +12,8 @@ public class Conta {
 	public Conta(String nomeCliente, String numeroConta, String senha, double saldo){
 		
 		this.nomeCliente = nomeCliente;
-		this.senha = senha;
 		this.numeroConta = numeroConta;
+		this.senha = senha;
 		this.saldo = saldo;
 		this.extrato = "";
 	}
