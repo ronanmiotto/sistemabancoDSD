@@ -35,7 +35,7 @@ public class Caixa {
 			String[] validandoCliente = recebeSocket.nextLine().split("-");
 
 			// Conferindo se cliente existe
-			if (validandoCliente[0] == ("true")) {
+			if (validandoCliente[0].equals("true")) {
 				System.out.println("\nOlá Senhor(a), " + validandoCliente[1] + ".");
 				
 				int opc = 0;

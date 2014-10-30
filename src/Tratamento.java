@@ -47,7 +47,7 @@ public class Tratamento extends Thread {
 				e1.printStackTrace();
 			}
 
-			if (autenticaLogin(textoEntrada, banco).split("-")[0] == ("true")) {
+			if (autenticaLogin(textoEntrada, banco).split("-")[0].equals("true")) {
 				try {
 					enviaSocket = new PrintStream(caixa.getOutputStream());
 

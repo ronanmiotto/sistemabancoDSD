@@ -8,6 +8,7 @@ public class Banco {
 	
 	// Construtor da classe
 	public Banco() {
+		
 		this.contas = new ArrayList<Conta>();
 		
 		// Cadastrando contas no banco
