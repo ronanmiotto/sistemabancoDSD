@@ -17,7 +17,7 @@ public class Caixa {
      boolean funcionando = true;
 	 
 	 while(funcionando == true){     
-	     System.out.println("Seja Bem Vindo(a) ao BANCO DO POVO.\nPor favor insira os dados de sua conta.\n");
+	     System.out.println("Seja Bem Vindo(a) ao BANCO DO POVO.\nPor favor, insira os dados de sua conta.\n");
 	     
 	     System.out.print("Número da Conta: ");
 	     String conta = ler.nextLine();
@@ -31,12 +31,13 @@ public class Caixa {
 	     Scanner recebeSocket = new Scanner(caixa.getInputStream());
 	     String [] validandoCliente = recebeSocket.nextLine().split("-"); 
 	     
-	     if(validandoCliente[0].equals("true")){
+	     if(validandoCliente[0] == ("true")){
 	    	 System.out.println("\nOlá Senhor(a), " + validandoCliente[1] + ".");
 	    
 	    	 int opc = 0;
    
 	    	 while(opc != 6){
+	    		 
 		    	 System.out.println("\n****** BANCO DO POVO ******");
 		         System.out.println("1 - Depósito");
 		         System.out.println("2 - Saque");
@@ -61,7 +62,7 @@ public class Caixa {
 		         		
 		         		String dadosDeposito[] = recebeSocket.nextLine().split("-");
 		         		
-		         		if(dadosDeposito[0].equalsIgnoreCase("true")){
+		         		if(dadosDeposito[0] == ("true")){
 		         			
 		         			System.out.println("\nOperação realizada com sucesso!!!");
 		         			System.out.println("Cliente: " + dadosDeposito[2]);
@@ -74,21 +75,25 @@ public class Caixa {
 		         		break;
 		         		
 		         	case 2:
+		         		
 		         		System.out.println("\n__________SAQUE__________");
 		         		System.out.print("Digite o número da conta: ");
 		         		String contaSaque = ler.nextLine();
 		         		
 		         		System.out.print("Digite o valor do saque: ");
+		         		
 		         		double valorSaque = Double.parseDouble(ler.nextLine());
 		         		
 		         		enviaSocket.println(opc + "-" + contaSaque + "-" + valorSaque);
 		         		
 		         		String dadosSaque[] = recebeSocket.nextLine().split("-");
 		         		
-		         		if(dadosSaque[0].equalsIgnoreCase("true")){
+		         		if(dadosSaque[0] == ("true")){
+		         			
 		         			System.out.println("\nOperação realizada com sucesso!!!");
-		         			System.out.println("Titular: " + dadosSaque[2]);
+		         			System.out.println("Cliente: " + dadosSaque[2]);
 		         			System.out.println("Saldo: " + dadosSaque[1]);
+		         			
 		         		} else {
 		         			System.out.println("\n" + dadosSaque[1]);
 		         		}
@@ -101,7 +106,8 @@ public class Caixa {
 		         		
 		         		String dadosSaldo[] = recebeSocket.nextLine().split("-");
 		         		
-		         		if(dadosSaldo[0].equalsIgnoreCase("true")){
+		         		if(dadosSaldo[0] == ("true")){
+		         			
 		         			System.out.println("Saldo: " + dadosSaldo[1]);
 		         		} else {
 		         			System.out.println("\n" + dadosSaldo[1]);
@@ -115,7 +121,7 @@ public class Caixa {
 		         		
 		         		String dadosExtrato[] = recebeSocket.nextLine().split("-");
 		         		
-		         		if(dadosExtrato[0].equalsIgnoreCase("true")){
+		         		if(dadosExtrato[0] == ("true")){
 		         			for(int i = 1; i < dadosExtrato.length; i++){
 		         				System.out.println(dadosExtrato[i]);
 		         			}

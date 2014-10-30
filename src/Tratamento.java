@@ -77,7 +77,7 @@ public class Tratamento extends Thread {
 									}else{
 										if (opc == 5){
 											// Enviando dados da ajuda
-											enviaSocket.println("Procure seu gerente de contas!");
+											enviaSocket.println("\nDesculpe estamos em manutenção!\nProcure seu gerente de contas para mais informações!");
 										}else{
 											// sair
 											System.out.println("Sair");
@@ -89,7 +89,7 @@ public class Tratamento extends Thread {
 					
 						}
 
-						if (opc != 6 && opc != 5) {
+						if (opc != 5 && opc != 6) {
 							
 							textoEntrada = recebeSocket.nextLine();
 							dadosRecebidos = textoEntrada.split("-");
