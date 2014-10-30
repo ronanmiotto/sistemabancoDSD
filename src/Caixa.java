@@ -134,8 +134,5 @@ public class Caixa {
 	     }
      }
      
-//     recebeSocket.close();
-//     ler.close();
-//     caixa.close();
    }
 }

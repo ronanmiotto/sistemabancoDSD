@@ -7,7 +7,7 @@ public class Servidor {
 		Banco banco = new Banco();
 	   
 		ServerSocket servidor = new ServerSocket(12345);
-		System.out.println("Porta 12345 aberta!");
+		System.out.println("Porta 172.16.1.100 aberta!");
      
 		int i = 1;
      
