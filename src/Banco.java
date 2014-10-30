@@ -22,7 +22,7 @@ public class Banco {
 		this.contas.add(conta);
 	}
 	
-	// Get conta cliente no Array
+	// Pega conta cliente no Array
 	public ArrayList<Conta> getContas(){
 		return this.contas;
 	}
