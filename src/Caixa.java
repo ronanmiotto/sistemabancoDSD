@@ -21,7 +21,7 @@ public class Caixa {
 			System.out
 					.println("Seja Bem Vindo(a) ao BANCO DO POVO.\nPor favor, insira os dados de sua conta.\n");
 
-			System.out.print("Número da Conta: ");
+			System.out.print("Nï¿½mero da CONTA: ");
 			String numeroConta = ler.nextLine();
 
 			System.out.print("Senha: ");
@@ -31,45 +31,45 @@ public class Caixa {
 			PrintStream enviaSocket = new PrintStream(caixa.getOutputStream());
 			enviaSocket.println(numeroConta + "-" + senha);
 
-			// Recebendo as informações da conta
+			// Recebendo as informaï¿½ï¿½es da conta
 			Scanner recebeSocket = new Scanner(caixa.getInputStream());
 			String[] validandoCliente = recebeSocket.nextLine().split("-");
 
 			// Conferindo se cliente existe
 			if (validandoCliente[0].equals("true")) {
-				System.out.println("\nOlá Senhor(a), " + validandoCliente[1] + ".");
+				System.out.println("\nOlï¿½ Senhor(a), " + validandoCliente[1] + ".");
 
 				int opc = 0;
 
 				while (opc >= 1 || opc <= 6) {
 
-					// Menu de opções
+					// Menu de opï¿½ï¿½es
 					System.out.println("\n****** BANCO DO POVO ******");
-					System.out.println("1 - Depósito");
+					System.out.println("1 - Depï¿½sito");
 					System.out.println("2 - Saque");
 					System.out.println("3 - Saldo");
 					System.out.println("4 - Extrato");
 					System.out.println("5 - Ajuda");
 					System.out.println("6 - Sair");
 
-					System.out.print("\nDigite a opção que deseja realizar: ");
+					System.out.print("\nDigite a opï¿½ï¿½o que deseja realizar: ");
 
-					// //Transforma entrada do teclado em número
+					// //Transforma entrada do teclado em nï¿½mero
 					opc = Integer.parseInt(ler.nextLine());
 
 					if (opc == 1) {
 
-						System.out.println("\n__________DEPÓSITO__________");
-						System.out.print("Digite o número da conta: ");
+						System.out.println("\n__________DEPï¿½SITO__________");
+						System.out.print("Digite o nï¿½mero da CONTA: ");
 						String numContaDeposito = ler.nextLine();
 
-						System.out.print("Valor do depósito: ");
+						System.out.print("Valor do depï¿½sito: ");
 						
-						// Transforma entrada do teclado em números
+						// Transforma entrada do teclado em nï¿½meros
 						double valorDeposito = Double.parseDouble(ler.nextLine());
 						System.out.println("\n____________________________________\n");
 
-						// Enviando dados do depósito (Número da conta e valor do depósito)
+						// Enviando dados do depï¿½sito (Nï¿½mero da conta e valor do depï¿½sito)
 						enviaSocket.println(opc + "-" + numContaDeposito + "-" + valorDeposito);
 
 						// Recebendo os dados quebrados e transformando em string
@@ -79,12 +79,12 @@ public class Caixa {
 						if (opc == 2) {
 
 							System.out.println("\n__________SAQUE__________");
-							System.out.print("Digite o número da conta: ");
+							System.out.print("Digite o nï¿½mero da CONTA: ");
 							String contaSaque = ler.nextLine();
 
 							System.out.print("Digite o valor do saque: ");
 
-							// Transforma entrada do teclado em números
+							// Transforma entrada do teclado em nï¿½meros
 							double valorSaque = Double.parseDouble(ler.nextLine());
 
 							// Enviando socket para tratamento
@@ -98,7 +98,7 @@ public class Caixa {
 							if (dadosSaque[0].equals("true")) {
 
 								// Apresenta nome do cliente e valor do saldo
-								System.out.println("\nOperação realizada com sucesso!!!" + "Cliente: "+ dadosSaque[2] + "Saldo: " + dadosSaque[1]);
+								System.out.println("\nOperaï¿½ï¿½o realizada com sucesso!!!" + "Cliente: "+ dadosSaque[2] + "Saldo: " + dadosSaque[1]);
 								System.out.println("\n____________________________________\n");
 
 								//double totalSaque = Double.parseDouble(dadosSaque[1]);
@@ -121,7 +121,7 @@ public class Caixa {
 
 								if (dadosSaldo[0].equals("true")) {
 									
-									System.out.println("Saldo: "+ dadosSaldo[1]);
+									System.out.println("Saldo: " + dadosSaldo[1]);
 									//double totalSaldo = Double.parseDouble(dadosSaldo[1]);
 									System.out.println("\n____________________________________\n");
 
@@ -146,8 +146,9 @@ public class Caixa {
 									if (dadosExtrato[0].equals("true")) {
 
 										for (int i = 1; i < dadosExtrato.length; i++) {
-
-											//System.out.println(dadosExtrato[i] += "\nDepósito: R$ " +dadosDeposito[i] + "\nSaque: R$ " + totalSaque + "\nSaldo: R$ " +totalSaldo);
+											
+											System.out.println("\n" + dadosExtrato[1]);
+											//System.out.println(dadosExtrato[i] += "\nDepï¿½sito: R$ " +dadosDeposito[i] + "\nSaque: R$ " + totalSaque + "\nSaldo: R$ " +totalSaldo);
 											System.out.println("...\n...\n...\n...\n...\n");
 										}
 
@@ -161,8 +162,9 @@ public class Caixa {
 
 									if (opc == 5) {
 
-										System.out.println("\n__________AJUDA__________");
-
+										System.out.println("\n__________AJUDA__________\n");
+										System.out.println("=/ \n" + "\nDesculpe estamos em manutenï¿½ï¿½o!\nProcure seu gerente de contas para mais informaï¿½ï¿½es!");
+										System.out.println("************************************");
 									} else {
 
 										if (opc == 6) {
@@ -178,7 +180,7 @@ public class Caixa {
 					}
 				}
 
-				// System.out.println("\n***Conta ou Senha inválida***\nTente Novamente!\n");
+				// System.out.println("\n***Conta ou Senha invï¿½lida***\nTente Novamente!\n");
 			}
 		}
 	}

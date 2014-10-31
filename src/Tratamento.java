@@ -76,7 +76,7 @@ public class Tratamento extends Thread {
 									}else{
 										if (opc == 5){
 											// Enviando dados da ajuda
-											enviaSocket.println("\nDesculpe estamos em manutenção!\nProcure seu gerente de contas para mais informações!");
+											enviaSocket.println();
 										}else{
 											// sair
 											System.out.println("Sair");
@@ -88,13 +88,14 @@ public class Tratamento extends Thread {
 					
 						}
 
-						if (opc != 5 && opc != 6) {
-							
-							textoEntrada = recebeSocket.nextLine();
-							dadosRecebidos = textoEntrada.split("-");
-
-							opc = Integer.parseInt(dadosRecebidos[0]);
-						}
+//						if (opc != 5 && opc != 6) {
+//							
+//							textoEntrada = recebeSocket.nextLine();
+//							dadosRecebidos = textoEntrada.split("-");
+//
+//							opc = Integer.parseInt(dadosRecebidos[0]);
+//						}
+//					}
 					}
 					
 				} catch (IOException e) {
@@ -128,7 +129,7 @@ public class Tratamento extends Thread {
 			return "false-O Campo conta não foi preenchido";
 		}
 
-		if (valor == 0) {
+		if (valor ==  0) {
 			return "false-O Campo valor não foi preenchido";
 		}
 
@@ -238,4 +239,6 @@ public class Tratamento extends Thread {
 
 		return "false-Erro!";
 	}
+	
 }
+
